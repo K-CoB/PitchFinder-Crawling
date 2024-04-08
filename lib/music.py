@@ -7,9 +7,9 @@ def crawl_music():
     soup = BeautifulSoup(html, 'html.parser')
 
     tables = soup.select(
-        '#app > main > div.bqkK3hvK > div.bXKSnKo9 > article > div.mhBuBvnc > div > div:nth-child(2) > div > div > div:nth-child(9)')
+        '#app > main > div.faHoM7-A > div._13PsKTJo > article > div.DPFTVXzw > div > div:nth-child(2) > div > div > div:nth-child(9)')
     woman = soup.select(
-        '#app > main > div.bqkK3hvK > div.bXKSnKo9 > article > div.mhBuBvnc > div > div:nth-child(2) > div > div > div:nth-child(11)')
+        '#app > main > div.faHoM7-A > div._13PsKTJo > article > div.DPFTVXzw > div > div:nth-child(2) > div > div > div:nth-child(11)')
     woman = woman[0].find_all('table', class_='wiki-table')
 
     data = []
@@ -43,3 +43,4 @@ def crawl_music():
                     data.append([singer, song, highest_note, lowest_note, 0])
 
     return data
+

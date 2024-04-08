@@ -1,14 +1,16 @@
 import pymysql
 
+from lib.settings import MYSQL_HOST, MYSQL_DB, MYSQL_PASSWORD, MYSQL_USERNAME
+
 
 class Connection:
     def __init__(self):
         self.con = pymysql.connect(
-            host='192.168.2.27',
+            host=MYSQL_HOST,
             port=3306,
-            user='username',
-            password='pass123',
-            db='dbname',
+            user=MYSQL_USERNAME,
+            password=MYSQL_PASSWORD,
+            db=MYSQL_DB,
             autocommit=True,  # 결과 DB 반영 (Insert or update)
             charset='utf8mb4',  # 한글처리 (charset = 'utf8')
             cursorclass=pymysql.cursors.DictCursor  # DB조회시 컬럼명을 동시에 보여줌
