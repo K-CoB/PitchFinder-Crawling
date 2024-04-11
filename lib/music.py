@@ -6,10 +6,11 @@ def crawl_music():
     html = requests.get().text
     soup = BeautifulSoup(html, 'html.parser')
 
+
     tables = soup.select(
-        '#app > main > div.faHoM7-A > div._13PsKTJo > article > div.DPFTVXzw > div > div:nth-child(2) > div > div > div:nth-child(9)')
+        '#app > main > div._9kJJZrJx > div.pDlpchRt > article > div.jUYjlxj4 > div > div:nth-child(2) > div > div > div:nth-child(9)')
     woman = soup.select(
-        '#app > main > div.faHoM7-A > div._13PsKTJo > article > div.DPFTVXzw > div > div:nth-child(2) > div > div > div:nth-child(11)')
+        '#app > main > div._9kJJZrJx > div.pDlpchRt > article > div.jUYjlxj4 > div > div:nth-child(2) > div > div > div:nth-child(11)')
     woman = woman[0].find_all('table', class_='wiki-table')
 
     data = []
@@ -44,3 +45,4 @@ def crawl_music():
 
     return data
 
+print(crawl_music())
