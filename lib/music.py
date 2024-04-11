@@ -6,10 +6,11 @@ def crawl_music():
     html = requests.get('https://namu.wiki/w/%EC%A0%80%EC%9D%8C/%EB%85%B8%EB%9E%98%20%EB%AA%A9%EB%A1%9D').text
     soup = BeautifulSoup(html, 'html.parser')
 
+
     tables = soup.select(
-        '#app > main > div.faHoM7-A > div._13PsKTJo > article > div.DPFTVXzw > div > div:nth-child(2) > div > div > div:nth-child(9)')
+        '#app > main > div._9kJJZrJx > div.pDlpchRt > article > div.jUYjlxj4 > div > div:nth-child(2) > div > div > div:nth-child(9)')
     woman = soup.select(
-        '#app > main > div.faHoM7-A > div._13PsKTJo > article > div.DPFTVXzw > div > div:nth-child(2) > div > div > div:nth-child(11)')
+        '#app > main > div._9kJJZrJx > div.pDlpchRt > article > div.jUYjlxj4 > div > div:nth-child(2) > div > div > div:nth-child(11)')
     woman = woman[0].find_all('table', class_='wiki-table')
 
     data = []
@@ -44,3 +45,4 @@ def crawl_music():
 
     return data
 
+print(crawl_music())
