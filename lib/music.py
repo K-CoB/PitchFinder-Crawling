@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-
+link = 'https://namu.wiki/w/%EC%A0%80%EC%9D%8C/%EB%85%B8%EB%9E%98%20%EB%AA%A9%EB%A1%9D'
 def crawl_music():
-    html = requests.get('https://namu.wiki/w/%EC%A0%80%EC%9D%8C/%EB%85%B8%EB%9E%98%20%EB%AA%A9%EB%A1%9D').text
+    html = requests.get().text
     soup = BeautifulSoup(html, 'html.parser')
 
     tables = soup.select(
@@ -29,7 +29,7 @@ def crawl_music():
                         song = tmp[i + 1].text
                         lowest_note = tmp[i + 2].text.split("(")[1].replace(")", "")
                         highest_note = tmp[i + 3].text.split("(")[1].replace(")", "")
-                        data.append([singer, song, highest_note, lowest_note, gender])
+                        data.append(formulate_data(singer, song, highest_note, lowest_note, gender))
                     else:
                         i += 1
                         continue
@@ -40,7 +40,7 @@ def crawl_music():
                     singer = tmp[i].text
                     song = tmp[i + 1].text
                     lowest_note = tmp[i + 2].text.split("(")[1].replace(")", "")
-                    data.append([singer, song, highest_note, lowest_note, 0])
+                    data.append(formulate_data(singer, song, highest_note, lowest_note, 0))
 
     return data
 
