@@ -6,5 +6,6 @@ CREATE TABLE music (
     lowest_pitch VARCHAR(20),
     gender INT,
     genre VARCHAR(50),
+    youtube_url VARCHAR(255),
     key_of_song INT
 );

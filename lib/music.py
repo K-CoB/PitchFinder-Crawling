@@ -10,9 +10,9 @@ def crawl_music():
 
 
     tables = soup.select(
-        '#app > main > div._9kJJZrJx > div.pDlpchRt > article > div.jUYjlxj4 > div > div:nth-child(2) > div > div > div:nth-child(9)')
+        '#app > div > div._1XS3A-J6 > div.mZDlmqYb > div > div.LVWdlGyI > div > div:nth-child(2) > div > div > div:nth-child(9)')
     woman = soup.select(
-        '#app > main > div._9kJJZrJx > div.pDlpchRt > article > div.jUYjlxj4 > div > div:nth-child(2) > div > div > div:nth-child(11)')
+        '#app > div > div._1XS3A-J6 > div.mZDlmqYb > div > div.LVWdlGyI > div > div:nth-child(2) > div > div > div:nth-child(11)')
     woman = woman[0].find_all('table', class_='wiki-table')
 
     data = []
@@ -32,7 +32,8 @@ def crawl_music():
                         song = tmp[i + 1].text
                         lowest_note = tmp[i + 2].text.split("(")[1].replace(")", "").strip()
                         highest_note = tmp[i + 3].text.split("(")[1].replace(")", "").strip()
-                        data.append(formulate_data(singer, song, highest_note, lowest_note, gender))
+                        youtube_url = f"https://www.youtube.com/results?search_query={singer}+{song}"
+                        data.append(formulate_data(singer, song, highest_note, lowest_note, gender, youtube_url))
                     else:
                         i += 1
                         continue
@@ -43,8 +44,7 @@ def crawl_music():
                     singer = tmp[i].text
                     song = tmp[i + 1].text
                     lowest_note = tmp[i + 2].text.split("(")[1].replace(")", "").strip()
-                    data.append(formulate_data(singer, song, highest_note, lowest_note, 0))
+                    youtube_url = f"https://www.youtube.com/results?search_query={singer}+{song}"
+                    data.append(formulate_data(singer, song, highest_note, lowest_note, 0, youtube_url))
 
     return data
-
-print(crawl_music())

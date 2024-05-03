@@ -5,10 +5,9 @@ from utils.validate import validate_data
 
 def process():
     data = crawl_music()
-    data = validate_data(data)
 
     print(data)
-    create_music_in_mysql(data)
+    # create_music_in_mysql(data)
 
 
 # Press the green button in the gutter to run the script.

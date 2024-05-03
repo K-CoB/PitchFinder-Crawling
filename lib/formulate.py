@@ -1,4 +1,7 @@
+from utils.utils import get_logger
 from utils.validate import validate_data
+
+logger = get_logger()
 
 
 def note_to_midi(note):
@@ -9,15 +12,17 @@ def note_to_midi(note):
     try:
         midi_note = octave * 12 + notes[note_name]
     except KeyError:
+        print("key error")
         print(note, octave, note_name, notes.get(note_name))
     return midi_note
 
-def formulate_data(singer, song, highest_note, lowest_note, gender):
+def formulate_data(singer, song, highest_note, lowest_note, gender, youtube_url):
     song_data = {
         "title": validate_data(song),
         "singer": validate_data(singer),
         "high": note_to_midi(validate_data(highest_note)),
         "low": note_to_midi(validate_data(lowest_note)),
-        "gender": gender
+        "gender": gender,
+        "youtube_url": youtube_url
     }
     return song_data
