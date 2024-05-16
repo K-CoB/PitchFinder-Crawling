@@ -3,16 +3,15 @@ from bs4 import BeautifulSoup
 
 from lib.formulate import formulate_data
 
-
 def crawl_music():
     html = requests.get('https://namu.wiki/w/%EC%A0%80%EC%9D%8C/%EB%85%B8%EB%9E%98%20%EB%AA%A9%EB%A1%9D').text
     soup = BeautifulSoup(html, 'html.parser')
 
 
     tables = soup.select(
-        '#app > div > div._1XS3A-J6 > div.mZDlmqYb > div > div.LVWdlGyI > div > div:nth-child(2) > div > div > div:nth-child(9)')
+        '#app > div > div.nx9mLnL1 > div.fkoM8Xts > div > div.yILKkARW > div > div:nth-child(2) > div > div > div:nth-child(9)')
     woman = soup.select(
-        '#app > div > div._1XS3A-J6 > div.mZDlmqYb > div > div.LVWdlGyI > div > div:nth-child(2) > div > div > div:nth-child(11)')
+        '#app > div > div.nx9mLnL1 > div.fkoM8Xts > div > div.yILKkARW > div > div:nth-child(2) > div > div > div:nth-child(11)')
     woman = woman[0].find_all('table', class_='wiki-table')
 
     data = []

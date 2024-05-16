@@ -6,4 +6,5 @@ class Music(str):
     lowest_pitch: str = "lowest_pitch"
     gender: int = "gender" # man:0, woman:1
     genre: str = "genre"
-    key: int  = "key"
+    youtube_url: str = "youtube_url"
+    key: int  = "key_of_song"
