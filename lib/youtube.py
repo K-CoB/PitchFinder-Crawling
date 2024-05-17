@@ -26,5 +26,3 @@ def crawl_youtube_image(singer, song):
     print(youtube_image, youtube_link)
     return youtube_image, youtube_link
 
-
-print(crawl_youtube_image("이선희", "인연"))
