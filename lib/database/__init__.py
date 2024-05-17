@@ -1,6 +1,7 @@
 from typing import List, Any
 
 from lib.database.mysql.mysql import Connection
+from lib.youtube import crawl_youtube_image
 
 
 def create_music_in_mysql(data):
@@ -9,3 +10,14 @@ def create_music_in_mysql(data):
     data = [tuple(d.values()) for d in data]
     print(data)
     conn.save_all(query, data)
+
+
+
+def update_youtube_image_url(data):
+    for i in range(len(data)):
+        thumbnail = crawl_youtube_image(data[i]['singer'], data[i]['song'])
+        data[i]['thumbnail'] = thumbnail
+    print(data)
+
+conn = Connection()
+update_youtube_image_url(conn.select_all('SELECT * FROM music'))

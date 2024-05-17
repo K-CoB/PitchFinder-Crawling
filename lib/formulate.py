@@ -16,13 +16,14 @@ def note_to_midi(note):
         print(note, octave, note_name, notes.get(note_name))
     return midi_note
 
-def formulate_data(singer, song, highest_note, lowest_note, gender, youtube_url):
+def formulate_data(singer, song, highest_note, lowest_note, gender, youtube_url, thumbnail):
     song_data = {
         "title": validate_data(song),
         "singer": validate_data(singer),
         "high": note_to_midi(validate_data(highest_note)),
         "low": note_to_midi(validate_data(lowest_note)),
         "gender": gender,
-        "youtube_url": youtube_url
+        "youtube_url": youtube_url,
+        "thumbnail" : thumbnail
     }
     return song_data
