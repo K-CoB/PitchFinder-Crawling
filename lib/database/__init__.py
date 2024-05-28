@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from lib.database.mysql.mysql import Connection
-from lib.youtube import crawl_youtube_image
+from lib.youtube import crawl_youtube_image, crawl_youtube_tj
 from googleapiclient.errors import HttpError
 
 
@@ -14,19 +14,21 @@ def create_music_in_mysql(data):
 
 def update_youtube_image_url():
     conn = Connection()
-    data = conn.select_all('SELECT * FROM music')
+    data = conn.select_all('SELECT * FROM music WHERE id>210')
     tmp = []
     try:
         for d in data:
             thumbnail, youtube_link = crawl_youtube_image(d['singer'], d['song'])
+            youtube_sing_url = crawl_youtube_tj(d['singer'], d['song'])
             song_data = {
                 "title": d['song'],
                 "singer": d['singer'],
                 # "high": d['high'],
                 # "low": d['low'],
                 # "gender": d['gender'],
-                "youtube_url": youtube_link,
-                "thumbnail": thumbnail
+                "youtube_listen_url": youtube_link,
+                "thumbnail": thumbnail,
+                "youtube_sing_url": youtube_sing_url
             }
             tmp.append(song_data)
     except HttpError:
@@ -35,10 +37,10 @@ def update_youtube_image_url():
     return tmp
 
 def update_music(data):
-    query = "UPDATE music SET youtube_listen_url = %s WHERE singer = %s AND song = %s"
+    query = "UPDATE music SET youtube_url = %s, youtube_image = %s, youtube_listen_url = %s WHERE singer = %s AND song = %s"
     conn = Connection()
-    data = [tuple([d['youtube_url'], d['singer'], d['title']]) for d in data]
+    data = [tuple([d['youtube_listen_url'],d['thumbnail'],d['youtube_sing_url'], d['singer'], d['title']]) for d in data]
     conn.save_all(query, data)
 
 
-
+update_music(update_youtube_image_url())

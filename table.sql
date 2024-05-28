@@ -10,3 +10,5 @@ CREATE TABLE music (
     youtube_image VARCHAR(255),
     youtube_sing_url VARCHAR(255)
 );
+
+INSERT INTO music (song, singer, highest_pitch, lowest_pitch) VALUES

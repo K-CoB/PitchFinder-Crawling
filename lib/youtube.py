@@ -13,7 +13,7 @@ youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_SERVICE_VERSION, developer
 def crawl_youtube_image(singer, song):
     # q에 원하는 채널 이름 넣는다
     search_response = youtube.search().list(
-        q=f"tj {singer} {song}",
+        q=f"{singer} {song}",
         order='relevance',
         part='snippet',
         maxResults=50,
@@ -23,3 +23,15 @@ def crawl_youtube_image(singer, song):
     youtube_link = f"https://www.youtube.com/watch?v={search_response['items'][0]['id']['videoId']}"
     return youtube_image, youtube_link
 
+
+def crawl_youtube_tj(singer, song):
+    # q에 원하는 채널 이름 넣는다
+    search_response = youtube.search().list(
+        q=f"tj {singer} {song}",
+        order='relevance',
+        part='snippet',
+        maxResults=50,
+    ).execute()
+
+    youtube_link = f"https://www.youtube.com/watch?v={search_response['items'][0]['id']['videoId']}"
+    return youtube_link
