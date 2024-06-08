@@ -22,8 +22,8 @@ def formulate_data(singer, song, highest_note, lowest_note, gender, youtube_url,
         "singer": validate_data(singer),
         "high": note_to_midi(validate_data(highest_note)),
         "low": note_to_midi(validate_data(lowest_note)),
-        # "gender": gender,
-        # "youtube_url": youtube_url,
-        # "thumbnail" : thumbnail
+        "gender": gender,
+        "youtube_url": youtube_url,
+        "thumbnail" : thumbnail
     }
     return song_data

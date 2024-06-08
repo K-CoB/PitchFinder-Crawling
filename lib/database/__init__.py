@@ -11,7 +11,6 @@ def create_music_in_mysql(data):
     conn.save_all(query, data)
 
 
-
 def update_youtube_image_url():
     conn = Connection()
     data = conn.select_all('SELECT * FROM music WHERE id>210')
@@ -23,9 +22,6 @@ def update_youtube_image_url():
             song_data = {
                 "title": d['song'],
                 "singer": d['singer'],
-                # "high": d['high'],
-                # "low": d['low'],
-                # "gender": d['gender'],
                 "youtube_listen_url": youtube_link,
                 "thumbnail": thumbnail,
                 "youtube_sing_url": youtube_sing_url
@@ -41,6 +37,3 @@ def update_music(data):
     conn = Connection()
     data = [tuple([d['youtube_listen_url'],d['thumbnail'],d['youtube_sing_url'], d['singer'], d['title']]) for d in data]
     conn.save_all(query, data)
-
-
-update_music(update_youtube_image_url())
