@@ -28,10 +28,10 @@
   YOUTUBE_API_KEY=
 
   ```
-- 프로젝트 내에 있는 Dockerfile로 도커를 빌드하여 프로그램을 실행한다.
+- 프로젝트에 필요한 라이브러리 설치 후 프로그램을 실행해준다.
   ```
-  docker build .
-  docker run
+  pip install -r requirements.txt
+  python main.py
   ```
 
   
