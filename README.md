@@ -78,3 +78,5 @@ music-data-crawling
     ├── utils.py # 로깅 설정
     └── validate.py # 데이터 전처리
 ```
+## 📊 ERD
+<img width="560" alt="image" src="https://github.com/K-CoB/music-data-crawling/assets/79985974/22b083d6-4eb7-408a-a553-86478567c22a">
