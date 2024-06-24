@@ -58,7 +58,6 @@ music-data-crawling
 ├── .env
 ├── .env.example
 ├── .gitignore
-├── Dockerfile
 ├── README.md
 ├── lib
 │   ├── database

@@ -9,7 +9,7 @@ def crawl_music():
     html = requests.get('https://namu.wiki/w/%EC%A0%80%EC%9D%8C/%EB%85%B8%EB%9E%98%20%EB%AA%A9%EB%A1%9D').text
     soup = BeautifulSoup(html, 'html.parser')
 
-
+    # css가 매일 바뀌기 때문에 실행 전에 업데이터 필요
     tables = soup.select(
         '#app > div > div.nx9mLnL1 > div.fkoM8Xts > div > div.yILKkARW > div > div:nth-child(2) > div > div > div:nth-child(9)')
     woman = soup.select(
@@ -33,9 +33,8 @@ def crawl_music():
                         song = tmp[i + 1].text
                         lowest_note = tmp[i + 2].text.split("(")[1].replace(")", "").strip()
                         highest_note = tmp[i + 3].text.split("(")[1].replace(")", "").strip()
-                        youtube_url = f"https://www.youtube.com/results?search_query={singer}+{song}"
-                        thumbnail = crawl_youtube_image(singer, song)
-                        data.append(formulate_data(singer, song, highest_note, lowest_note, gender, youtube_url, thumbnail))
+                        youtube_image, youtube_link = crawl_youtube_image(singer, song)
+                        data.append(formulate_data(singer, song, highest_note, lowest_note, gender, youtube_image, youtube_link))
                     else:
                         i += 1
                         continue
@@ -46,8 +45,7 @@ def crawl_music():
                     singer = tmp[i].text
                     song = tmp[i + 1].text
                     lowest_note = tmp[i + 2].text.split("(")[1].replace(")", "").strip()
-                    youtube_url = f"https://www.youtube.com/results?search_query={singer}+{song}"
-                    thumbnail = crawl_youtube_image(singer, song)
-                    data.append(formulate_data(singer, song, highest_note, lowest_note, 0, youtube_url, thumbnail))
+                    youtube_image, youtube_link = crawl_youtube_image(singer, song)
+                    data.append(formulate_data(singer, song, highest_note, lowest_note, 0, youtube_image, youtube_link))
 
     return data

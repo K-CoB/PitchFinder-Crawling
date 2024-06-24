@@ -5,7 +5,7 @@ from googleapiclient.errors import HttpError
 
 
 def create_music_in_mysql(data):
-    query = "INSERT INTO music (song, singer, highest_pitch, lowest_pitch, gender, youtube_url) VALUES (%s, %s, %s, %s, %s, %s)"
+    query = "INSERT INTO music (song, singer, highest_pitch, lowest_pitch, gender, youtube_image, youtube_url) VALUES (%s, %s, %s, %s, %s, %s)"
     conn = Connection()
     data = [tuple(d.values()) for d in data]
     conn.save_all(query, data)
